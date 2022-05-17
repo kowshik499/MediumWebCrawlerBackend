@@ -171,6 +171,7 @@ const getBlogsData = async (tag) => {
 
 app.post("/blogs/", async (request, response)=>{
     const {tag} = request.body
+    res.set('Access-Control-Allow-Origin', '*');
     try{
         const allBlogsDetails = await getBlogsData(tag);
         console.log(allBlogsDetails)
@@ -320,6 +321,7 @@ const getSpecificBlogData = async (url) => {
 
 app.post("/blog/id", async (request, response)=>{
     const {url} = request.body
+    res.set('Access-Control-Allow-Origin', '*');
     try{
         console.log("Entered into get api request try block")
         const blogDetails = await getSpecificBlogData(url);
