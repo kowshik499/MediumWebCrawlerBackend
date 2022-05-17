@@ -1,0 +1,41 @@
+//Get Blogs Details by tag
+post http://localhost:5000/blogs/
+Content-Type: application/json
+
+{
+    "tag": "business"
+}
+
+###
+
+//Get Specific blog details by url
+post http://localhost:5000/blog/id
+Content-Type: application/json
+
+{
+    "url": "https://medium.com//marketingaffiliate/why-starting-your-affiliate-marketing-business-is-a-good-idea-f3b7d263f9bb?source=topics_v2---------3-84--------------------e27713ba_63f3_43f6_b0e6_c3c81a6ed309-------19"
+}
+
+###
+
+//Register into the application
+post http://localhost:5000/register/
+Content-Type: application/json
+
+{
+    "username": "rahul",
+    "password": "rahul@2021",
+    "name": "rahul",
+    "gender": "MALE"
+}
+
+###
+
+//Login into the application.
+post http://localhost:5000/login/
+Content-Type: application/json
+
+{
+    "username": "rahul",
+    "password": "rahul@2021"
+}
