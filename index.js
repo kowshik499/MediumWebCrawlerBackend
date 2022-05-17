@@ -374,7 +374,7 @@ app.post("/register/", async (request, response) =>{
 //Login API
 app.post("/login/", async (request, response) =>{
     const {username, password} = request.body;
-
+    res.set('Access-Control-Allow-Origin', '*');
     const getUserQuery = `SELECT * FROM user WHERE username= "${username}";`;
     const userDbDetails = await db.query(getUserQuery)
     if (userDbDetails[0].length !== 0){
@@ -398,6 +398,7 @@ app.post("/login/", async (request, response) =>{
 })
 
 app.get("/", (request, response)=>{
+    response.set('Access-Control-Allow-Origin', '*');
     response.send("Working.")
 })
 
