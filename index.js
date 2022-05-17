@@ -397,6 +397,10 @@ app.post("/login/", async (request, response) =>{
     }
 })
 
+app.get("/", (request, response)=>{
+    response.send("Working.")
+})
+
 
 app.get("*", (request, response) =>{
     response.send("Invalid Route")
