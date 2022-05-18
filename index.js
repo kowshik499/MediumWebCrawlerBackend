@@ -6,6 +6,7 @@ const mysql = require("mysql2/promise");
 const {v4: uuidv4} = require("uuid");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
+const cors = require("cors")
 
 
 let db = null;
@@ -29,6 +30,9 @@ initializeDB()
 
 
 const app = express();
+
+app.use(cors())
+
 app.use(express.json())
 
 // app.use(express.static(path.join(__dirname, "public")))
@@ -171,7 +175,7 @@ const getBlogsData = async (tag) => {
 
 app.post("/blogs/", async (request, response)=>{
     const {tag} = request.body
-    res.set('Access-Control-Allow-Origin', '*');
+    response.set('Access-Control-Allow-Origin', '*');
     try{
         const allBlogsDetails = await getBlogsData(tag);
         console.log(allBlogsDetails)
@@ -321,7 +325,7 @@ const getSpecificBlogData = async (url) => {
 
 app.post("/blog/id", async (request, response)=>{
     const {url} = request.body
-    res.set('Access-Control-Allow-Origin', '*');
+    response.set('Access-Control-Allow-Origin', '*');
     try{
         console.log("Entered into get api request try block")
         const blogDetails = await getSpecificBlogData(url);
@@ -338,6 +342,7 @@ app.post("/blog/id", async (request, response)=>{
 //SignUp API
 
 app.post("/register/", async (request, response) =>{
+    response.set('Access-Control-Allow-Origin', '*');
     const {username, password, name, gender} = request.body;
     console.log(request.body);
     const getUserQuery = `SELECT * FROM user WHERE username = "${username}" ;`;
@@ -376,7 +381,7 @@ app.post("/register/", async (request, response) =>{
 //Login API
 app.post("/login/", async (request, response) =>{
     const {username, password} = request.body;
-    res.set('Access-Control-Allow-Origin', '*');
+    response.set('Access-Control-Allow-Origin', '*');
     const getUserQuery = `SELECT * FROM user WHERE username= "${username}";`;
     const userDbDetails = await db.query(getUserQuery)
     if (userDbDetails[0].length !== 0){
